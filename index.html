@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App Tutorial</title>
     <style>
+        /* Basic styles for the tutorial and app */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -12,117 +13,110 @@
             margin: 0;
             padding: 20px;
         }
+
         h1 {
             text-align: center;
+            color: #333;
         }
+
+        p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+
+        /* Styles for the To-Do App */
+        #todo-form {
+            display: flex;
+            margin-bottom: 20px;
         }
-        button {
+
+        #todo-input {
+            flex: 1;
             padding: 10px;
-            border: none;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+
+        #todo-button {
+            padding: 10px;
             background-color: #28a745;
-            color: #fff;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .todo-item button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
             cursor: pointer;
             border-radius: 4px;
         }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 4px;
-        }
-        ul li button {
-            background-color: #dc3545;
+
+        .todo-item button:hover {
+            background: #c82333;
         }
     </style>
 </head>
 <body>
-    <h1>To-Do App Tutorial</h1>
     <div class="container">
-        <h2>Step 1: Setting Up the HTML Structure</h2>
-        <p>First, we'll set up the basic HTML structure for our To-Do app. We'll need a text input to add new tasks, a button to submit them, and a list to display the tasks.</p>
-        
-        <pre><code>&lt;div class="container"&gt;
-    &lt;input type="text" id="taskInput" placeholder="Add a new task..."&gt;
-    &lt;button onclick="addTask()"&gt;Add Task&lt;/button&gt;
-    &lt;ul id="taskList"&gt;&lt;/ul&gt;
-&lt;/div&gt;</code></pre>
-        
-        <h2>Step 2: Styling the App with CSS</h2>
-        <p>Next, let's add some basic styling to make our app look clean and modern. We'll use simple CSS for this.</p>
-        
-        <pre><code>body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-}
+        <h1>To-Do App Tutorial</h1>
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}</code></pre>
-        
-        <h2>Step 3: Adding Functionality with JavaScript</h2>
-        <p>Now, let's make the app functional by adding JavaScript. We'll write functions to add tasks to the list, mark them as complete, and delete them.</p>
-        
-        <pre><code>&lt;script&gt;
-function addTask() {
-    var taskInput = document.getElementById('taskInput');
-    var taskList = document.getElementById('taskList');
+        <p>Welcome to this tutorial! Here, we'll walk through the steps to build a simple To-Do app using HTML, CSS, and JavaScript. Follow along, and by the end, you'll have a fully functional app!</p>
 
-    if (taskInput.value.trim() !== '') {
-        var li = document.createElement('li');
-        li.textContent = taskInput.value;
+        <!-- Tutorial Step 1: Create the basic structure -->
+        <h2>Step 1: HTML Structure</h2>
+        <p>First, we'll create the basic HTML structure for our To-Do app. We'll need a form to add tasks and a list to display them.</p>
+        <pre><code>
+        &lt;div class="container"&gt;
+            &lt;h1&gt;To-Do App&lt;/h1&gt;
+            &lt;form id="todo-form"&gt;
+                &lt;input type="text" id="todo-input" placeholder="Enter a new task..." required&gt;
+                &lt;button type="submit" id="todo-button"&gt;Add Task&lt;/button&gt;
+            &lt;/form&gt;
+            &lt;ul id="todo-list"&gt;&lt;/ul&gt;
+        &lt;/div&gt;
+        </code></pre>
 
-        var deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.onclick = function() {
-            taskList.removeChild(li);
-        };
+        <p>This code creates a form with an input field for adding new tasks and a button to submit them. Below the form, we have an empty list (&lt;ul&gt;) where our tasks will be displayed.</p>
 
-        li.appendChild(deleteButton);
-        taskList.appendChild(li);
-        taskInput.value = '';
-    }
-}
-&lt;/script&gt;</code></pre>
-        
-        <h2>Step 4: Testing and Final Touches</h2>
-        <p>Finally, test your To-Do app by adding, completing, and deleting tasks. You can further enhance the app by adding features like editing tasks, saving tasks to local storage, or filtering tasks based on their status.</p>
-
-        <h2>Final Code</h2>
-        <p>Here's the complete code for our To-Do app:</p>
-        <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;To-Do App&lt;/title&gt;
-    &lt;style&gt;
+        <!-- Tutorial Step 2: Styling the app -->
+        <h2>Step 2: CSS Styling</h2>
+        <p>Next, let's add some basic CSS to style the app. We'll make it look clean and modern.</p>
+        <pre><code>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -130,78 +124,113 @@ function addTask() {
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+
+        #todo-form {
+            display: flex;
+            margin-bottom: 20px;
         }
-        button {
+
+        #todo-input {
+            flex: 1;
             padding: 10px;
-            border: none;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+
+        #todo-button {
+            padding: 10px;
             background-color: #28a745;
-            color: #fff;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            background: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .todo-item button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
             cursor: pointer;
             border-radius: 4px;
         }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        ul li {
-            background: #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 4px;
-        }
-        ul li button {
-            background-color: #dc3545;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;To-Do App&lt;/h1&gt;
-    &lt;div class="container"&gt;
-        &lt;input type="text" id="taskInput" placeholder="Add a new task..."&gt;
-        &lt;button onclick="addTask()"&gt;Add Task&lt;/button&gt;
-        &lt;ul id="taskList"&gt;&lt;/ul&gt;
-    &lt;/div&gt;
 
-    &lt;script&gt;
-    function addTask() {
-        var taskInput = document.getElementById('taskInput');
-        var taskList = document.getElementById('taskList');
-
-        if (taskInput.value.trim() !== '') {
-            var li = document.createElement('li');
-            li.textContent = taskInput.value;
-
-            var deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.onclick = function() {
-                taskList.removeChild(li);
-            };
-
-            li.appendChild(deleteButton);
-            taskList.appendChild(li);
-            taskInput.value = '';
+        .todo-item button:hover {
+            background: #c82333;
         }
-    }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+        </code></pre>
+
+        <p>This CSS adds styling to the container, form, and task list to give the app a neat and user-friendly appearance.</p>
+
+        <!-- Tutorial Step 3: Adding JavaScript functionality -->
+        <h2>Step 3: JavaScript Functionality</h2>
+        <p>Finally, we'll add JavaScript to make the app functional. We'll handle task creation, display, and deletion.</p>
+        <pre><code>
+        &lt;script&gt;
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const todoForm = document.getElementById('todo-form');
+            const todoInput = document.getElementById('todo-input');
+            const todoList = document.getElementById('todo-list');
+
+            // Add event listener to the form
+            todoForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+                const task = todoInput.value.trim(); // Get and trim the input value
+                if (task) {
+                    addTask(task); // Add the task if it's not empty
+                    todoInput.value = ''; // Clear the input field
+                }
+            });
+
+            // Function to add a task to the list
+            function addTask(task) {
+                const li = document.createElement('li');
+                li.className = 'todo-item';
+                li.innerHTML = `
+                    ${task}
+                    &lt;button class="delete-button"&gt;Delete&lt;/button&gt;
+                `;
+                todoList.appendChild(li);
+
+                // Add delete functionality
+                li.querySelector('.delete-button').addEventListener('click', () => {
+                    todoList.removeChild(li);
+                });
+            }
+        });
+        &lt;/script&gt;
+        </code></pre>
+
+        <p>This JavaScript code handles adding new tasks to the list and deleting them when the "Delete" button is clicked. The `addTask` function creates a new list item (&lt;li&gt;) with the task text and a delete button.</p>
+
+        <h2>Conclusion</h2>
+        <p>And that's it! You've successfully created a simple To-Do app using HTML, CSS, and JavaScript. Feel free to expand on this by adding features like task editing, task prioritization, or local storage to save tasks between sessions.</p>
     </div>
 </body>
 </html>
