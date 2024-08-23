@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App Tutorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+        ul li button {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do App Tutorial</h1>
+    <div class="container">
+        <h2>Step 1: Setting Up the HTML Structure</h2>
+        <p>First, we'll set up the basic HTML structure for our To-Do app. We'll need a text input to add new tasks, a button to submit them, and a list to display the tasks.</p>
+        
+        <pre><code>&lt;div class="container"&gt;
+    &lt;input type="text" id="taskInput" placeholder="Add a new task..."&gt;
+    &lt;button onclick="addTask()"&gt;Add Task&lt;/button&gt;
+    &lt;ul id="taskList"&gt;&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+        
+        <h2>Step 2: Styling the App with CSS</h2>
+        <p>Next, let's add some basic styling to make our app look clean and modern. We'll use simple CSS for this.</p>
+        
+        <pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}</code></pre>
+        
+        <h2>Step 3: Adding Functionality with JavaScript</h2>
+        <p>Now, let's make the app functional by adding JavaScript. We'll write functions to add tasks to the list, mark them as complete, and delete them.</p>
+        
+        <pre><code>&lt;script&gt;
+function addTask() {
+    var taskInput = document.getElementById('taskInput');
+    var taskList = document.getElementById('taskList');
+
+    if (taskInput.value.trim() !== '') {
+        var li = document.createElement('li');
+        li.textContent = taskInput.value;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = function() {
+            taskList.removeChild(li);
+        };
+
+        li.appendChild(deleteButton);
+        taskList.appendChild(li);
+        taskInput.value = '';
+    }
+}
+&lt;/script&gt;</code></pre>
+        
+        <h2>Step 4: Testing and Final Touches</h2>
+        <p>Finally, test your To-Do app by adding, completing, and deleting tasks. You can further enhance the app by adding features like editing tasks, saving tasks to local storage, or filtering tasks based on their status.</p>
+
+        <h2>Final Code</h2>
+        <p>Here's the complete code for our To-Do app:</p>
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;To-Do App&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            background: #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+        }
+        ul li button {
+            background-color: #dc3545;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;To-Do App&lt;/h1&gt;
+    &lt;div class="container"&gt;
+        &lt;input type="text" id="taskInput" placeholder="Add a new task..."&gt;
+        &lt;button onclick="addTask()"&gt;Add Task&lt;/button&gt;
+        &lt;ul id="taskList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+    function addTask() {
+        var taskInput = document.getElementById('taskInput');
+        var taskList = document.getElementById('taskList');
+
+        if (taskInput.value.trim() !== '') {
+            var li = document.createElement('li');
+            li.textContent = taskInput.value;
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.onclick = function() {
+                taskList.removeChild(li);
+            };
+
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+            taskInput.value = '';
+        }
+    }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</body>
+</html>
